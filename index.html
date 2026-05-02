@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sky Bound - Professional Bird Game</title>
+    <title>Yu-fly</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
@@ -16,6 +16,7 @@
             height: 45px;
             animation: float 2s ease-in-out infinite;
         }
+
         .css-bird .body {
             position: absolute;
             width: 100%;
@@ -24,6 +25,7 @@
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             border: 3px solid #854d0e;
         }
+
         .css-bird .eye {
             position: absolute;
             top: 10px;
@@ -33,6 +35,7 @@
             background: white;
             border-radius: 50%;
         }
+
         .css-bird .eye::after {
             content: '';
             position: absolute;
@@ -43,6 +46,7 @@
             background: black;
             border-radius: 50%;
         }
+
         .css-bird .beak {
             position: absolute;
             top: 18px;
@@ -52,6 +56,7 @@
             background: #f97316;
             clip-path: polygon(0 0, 100% 50%, 0 100%);
         }
+
         .css-bird .wing {
             position: absolute;
             top: 15px;
@@ -65,9 +70,15 @@
             animation: wingFlap 0.4s ease-in-out infinite alternate;
             z-index: 2;
         }
+
         @keyframes wingFlap {
-            from { transform: rotate(-20deg); }
-            to { transform: rotate(30deg); }
+            from {
+                transform: rotate(-20deg);
+            }
+
+            to {
+                transform: rotate(30deg);
+            }
         }
     </style>
 
@@ -222,7 +233,7 @@
 
         <!-- Start Screen -->
         <div id="start-screen" class="overlay">
-            <h1>SKY BOUND</h1>
+            <h1>Yu-fly</h1>
             <p>Bantu burung melewati pipa-pipa rintangan!</p>
             <div style="margin-bottom: 2rem; display: flex; justify-content: center;">
                 <div class="css-bird">
@@ -254,8 +265,15 @@
 
     <style>
         @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
         }
     </style>
 
@@ -280,12 +298,12 @@
         let flapPhase = 0;
 
         // Game Constants
-        const GRAVITY = 0.25;
-        const JUMP_STRENGTH = -5;
-        const PIPE_SPEED = 2.5;
-        const PIPE_SPAWN_RATE = 100; // frames
+        const GRAVITY = 0.15;
+        const JUMP_STRENGTH = -4;
+        const PIPE_SPEED = 1.8;
+        const PIPE_SPAWN_RATE = 140; // frames
         const PIPE_WIDTH = 60;
-        const PIPE_GAP = 160;
+        const PIPE_GAP = 170;
 
         // Game Variables
         let bird = {
@@ -310,7 +328,7 @@
                 x: Math.random() * 400,
                 y: Math.random() * 200,
                 size: 30 + Math.random() * 50,
-                speed: 0.2 + Math.random() * 0.5
+                speed: 0.1 + Math.random() * 0.3
             });
         }
 
@@ -390,7 +408,7 @@
                 let minPipeHeight = 50;
                 let maxPipeHeight = canvas.height - PIPE_GAP - minPipeHeight - 40;
                 let topHeight = Math.floor(Math.random() * (maxPipeHeight - minPipeHeight + 1) + minPipeHeight);
-                
+
                 pipes.push({
                     x: canvas.width,
                     top: topHeight,
@@ -459,7 +477,7 @@
             ctx.save();
             ctx.translate(bird.x, bird.y);
             ctx.rotate(bird.rotation);
-            
+
             // Bird Animation Calculation
             const flap = Math.sin(frames * 0.2) * 15;
 
@@ -512,7 +530,7 @@
             groundGrad.addColorStop(1, '#065f46');
             ctx.fillStyle = groundGrad;
             ctx.fillRect(0, canvas.height - 40, canvas.width, 40);
-            
+
             // Ground line
             ctx.fillStyle = '#064e3b';
             ctx.fillRect(0, canvas.height - 40, canvas.width, 4);
@@ -524,7 +542,7 @@
             pipeGrad.addColorStop(0, '#15803d');
             pipeGrad.addColorStop(0.5, '#22c55e');
             pipeGrad.addColorStop(1, '#15803d');
-            
+
             ctx.fillStyle = pipeGrad;
             ctx.fillRect(x, y, width, height);
 
